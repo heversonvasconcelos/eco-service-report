@@ -81,21 +81,21 @@ def generate_costumer_report(costumer_data):
     costumer_data.costumer_name = costumer_data[1]
     costumer_data.costumer_total = costumer_data[2]
 
-
     st.header(f":green[ {costumer_data.costumer_name} ]")
     st.markdown(":green[Você está nos ajudando a transformar o mundo mais sustentável!] :sunglasses:")
     st.divider()
     st.subheader("ESTE FOI SEU IMPACTO :blue[POSITIVO] EM JUNHO DE 2025")
-    st.markdown(f"Deixou de enviar para o aterro sanitário :green[{costumer_data.costumer_total}] kg :clap:")
+    st.markdown(f"Deixou de enviar para o aterro sanitário :green[{float(costumer_data.costumer_total):.2f}] kg :clap:")
     st.markdown(
-        f"Que se transfomou em :green[{float(costumer_data.costumer_total) * 0.38}] kg de adubo orgânico :recycle:")
+        f"Que se transformou em :green[{(float(costumer_data.costumer_total) * 0.38):.2f}] kg de adubo orgânico :recycle:")
     st.markdown(
-        f"Também foi evitado o lançamento de :green[{float(costumer_data.costumer_total) * 0.77}] kg de CO² na atmosfera :partly_sunny:")
-    st.markdown(f"Equivale á :green[{(float(costumer_data.costumer_total) * 0.77) / 0.096}] km rodados de carro :car:")
+        f"Também foi evitado o lançamento de :green[{(float(costumer_data.costumer_total) * 0.77):.2f}] kg de CO² na atmosfera :partly_sunny:")
     st.markdown(
-        f"Também equivale ao sequestro de CO² de :green[{(float(costumer_data.costumer_total) * 0.77) / 0.35}] árvores :deciduous_tree:")
+        f"Equivale á :green[{((float(costumer_data.costumer_total) * 0.77) / 0.096):.2f}] km rodados de carro :car:")
     st.markdown(
-        f"Com a sua iniciativa evitamos a contaminação de :green[{(float(costumer_data.costumer_total) * 0.214) * 12}] litros de água :droplet: :national_park:")
+        f"Também equivale ao sequestro de CO² de :green[{((float(costumer_data.costumer_total) * 0.77) / 0.35):.0f}] árvores :deciduous_tree:")
+    st.markdown(
+        f"Com a sua iniciativa evitamos a contaminação de :green[{((float(costumer_data.costumer_total) * 0.214) * 12):.2f}] litros de água :droplet: :national_park:")
 
 
 def generate_service_report():
