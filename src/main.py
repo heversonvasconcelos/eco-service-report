@@ -1,4 +1,6 @@
 # main.py
+import io
+import zipfile
 from datetime import datetime
 
 import pandas as pd
@@ -58,9 +60,11 @@ def read_xls_file(xls_file):
 
     costumers_data = costumers_data.dropna()
     costumers_data = costumers_data.rename(columns=lambda x: x.strip())
-    costumers_data = costumers_data.rename(columns={costumers_fields[0]: 'costumer_id',
-                                                    costumers_fields[1]: 'costumer_name',
-                                                    costumers_fields[2]: 'costumer_total'})
+    costumers_data = costumers_data.rename(
+        columns={costumers_data.columns[0]: 'costumer_id',
+                 costumers_data.columns[1]: 'costumer_name',
+                 costumers_data.columns[2]: 'costumer_total'}
+    )
 
     present_customers_data_to_confirm(costumers_data)
 
@@ -79,66 +83,51 @@ def present_customers_data_to_confirm(costumers_data):
         # selected_month = month_data.iloc[event.selection.rows[0]]
         preview_costumer_report(selected_costumer)
 
+    st.divider()
+
+    reports_file_name = get_translated_month_year('%B-%Y') + '.zip'
+    if st.download_button(
+            label="Download reports",
+            data=build_costumers_reports('templates/service-report-template.svg', costumers_data),
+            file_name=reports_file_name,
+            mime="application/zip",
+            icon=":material/download:",
+    ):
+        st.toast(f"Reports generated at {reports_file_name}")
+
 
 def get_costumer_report_file_name(costumer_id):
     month_year = get_translated_month_year('%B-%Y')
-    costumer_report_file_name = costumer_id + '-' + month_year + '.html'
+    costumer_report_file_name = costumer_id + '-' + month_year + '.svg'
     return costumer_report_file_name
 
-
+@st.cache_data
 def preview_costumer_report(costumer_data):
-    costumer_data.costumer_id = costumer_data[0]
-    costumer_data.costumer_name = costumer_data[1]
-    costumer_data.costumer_total = costumer_data[2]
-
-    # message = container.header(f":green[ {costumer_data.costumer_name} ]")
-    # container.markdown(":green[Você está nos ajudando a transformar o mundo mais sustentável!] :sunglasses:")
-    # container.divider()
-    # container.subheader(f"ESTE FOI SEU IMPACTO :blue[POSITIVO] EM {month_year}")
-    # container.markdown(
-    #     f"Deixou de enviar para o aterro sanitário :green[{float(costumer_data.costumer_total):.2f}] kg :clap:")
-    # container.markdown(
-    #     f"Que se transformou em :green[{(float(costumer_data.costumer_total) * 0.38):.2f}] kg de adubo orgânico :recycle:")
-    # container.markdown(
-    #     f"Também foi evitado o lançamento de :green[{(float(costumer_data.costumer_total) * 0.77):.2f}] kg de CO² na atmosfera :partly_sunny:")
-    # container.markdown(
-    #     f"Equivale á :green[{((float(costumer_data.costumer_total) * 0.77) / 0.096):.2f}] km rodados de carro :car:")
-    # container.markdown(
-    #     f"Também equivale ao sequestro de CO² de :green[{((float(costumer_data.costumer_total) * 0.77) / 0.35):.0f}] árvores :deciduous_tree:")
-    # container.markdown(
-    #     f"Com a sua iniciativa evitamos a contaminação de :green[{((float(costumer_data.costumer_total) * 0.214) * 12):.2f}] litros de água :droplet: :national_park:")
-
-    # if st.button("Prepare download"):
-    #     st.download_button(
-    #         label="Download text",
-    #         data="TESTE",
-    #         file_name="message.txt",
-    #         on_click="ignore",
-    #         type="primary",
-    #         icon=":material/download:",
-    #     )
-
-    costumer_report_file_name = get_costumer_report_file_name(costumer_data.costumer_id)
+    costumer_data.costumer_id = costumer_data.iloc[0]
+    costumer_data.costumer_name = costumer_data.iloc[1]
+    costumer_data.costumer_total = costumer_data.iloc[2]
 
     container = st.container(border=True)
-    html = generate_monthly_report('templates/service-report-template.v0.html', costumer_data,
-                                   costumer_report_file_name)
+    html = create_monthly_report('templates/service-report-template.v0.html', costumer_data)
     container.html(html)
 
-    st.divider()
+@st.cache_data
+def build_costumers_reports(template_file, costumers_data):
+    buf = io.BytesIO()
 
-    html = generate_monthly_report('templates/service-report-template.html', costumer_data, costumer_report_file_name)
-    if st.download_button(
-            label="Download reports",
-            data=html,
-            file_name=costumer_report_file_name,
-            mime="text/html",
-            icon=":material/download:",
-    ):
-        st.toast(f"Report generated for {costumer_data.costumer_name} at {costumer_report_file_name}")
+    for row in costumers_data.iterrows():
+        costumer = row[1]
+
+        costumer_report_file_name = get_costumer_report_file_name(costumer.costumer_id)
+        with zipfile.ZipFile(buf, 'a') as svg_zip:
+            svg = create_monthly_report(template_file, costumer)
+            svg_zip.writestr(costumer_report_file_name, svg)
+
+        # st.toast(f"Report generated for {costumer.costumer_name} at {costumer_report_file_name}")
+    return buf.getvalue()
 
 
-def generate_monthly_report(html_template_file, costumer_data, report_file_name):
+def create_monthly_report(html_template_file, costumer_data):
     # Load the Jinja2 template
     with open(html_template_file, 'r') as template_file:
         template_content = template_file.read()
@@ -153,8 +142,7 @@ def generate_monthly_report(html_template_file, costumer_data, report_file_name)
     water_liters = f"{((float(costumer_data.costumer_total) * 0.214) * 12):.2f}"
 
     # Render the template
-    htmlstr = jinja_template.render(title=report_file_name,
-                                    month_year=month_year,
+    htmlstr = jinja_template.render(month_year=month_year,
                                     report_id=report_id,
                                     costumer_name=costumer_data.costumer_name,
                                     costumer_waste_kg=costumer_data.costumer_total,
