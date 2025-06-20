@@ -1,9 +1,10 @@
 # main.py
-import io
-import zipfile
 import datetime  # Combined datetime import
+import io
 import locale
-from typing import Tuple, Optional, Any, Dict
+import os
+import zipfile
+from typing import Tuple, Optional, Any
 
 import pandas as pd
 import streamlit as st
@@ -167,6 +168,8 @@ def create_report_html(template_path: str, customer_data: pd.Series) -> str:
     """
     Renders an HTML report for a single customer using a Jinja2 template.
     """
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    template_path = dir_path + '/' + template_path
     with open(template_path, 'r', encoding='utf-8') as f:
         template_content = f.read()
         jinja_template = Template(template_content)
