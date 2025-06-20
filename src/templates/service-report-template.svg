@@ -35,14 +35,14 @@
   </text>
   <rect x="90" y="285" width="722" height="40" rx="8" fill="#f9fafb" style="" stroke="#e5e7eb"/>
   <text x="110" y="312" font-size="18" font-family="Inter, Arial, sans-serif" fill="#1e293b" style="white-space: pre;">
-    Nome: <tspan font-weight="bold">{{costumer_name}}</tspan>
+    Nome: <tspan font-weight="bold">{{customer_name}}</tspan>
   </text>
   <text x="90" y="370" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
     Este foi seu impacto positivo em {{month_year}}
   </text>
   <rect x="90" y="385" width="722" height="180" rx="12" fill="#f9fafb" stroke="#e5e7eb" style=""/>
   <text x="110" y="415" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Deixou de enviar para o aterro sanitário: {{costumer_waste_kg}} kg 👏
+    • Deixou de enviar para o aterro sanitário: {{customer_waste_kg}} kg 👏
   </text>
   <text x="110" y="440" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
     • Que se transformou em {{fertilizer_kg}} kg de adubo orgânico ♻️
