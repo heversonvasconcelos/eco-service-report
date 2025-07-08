@@ -3,11 +3,13 @@ import datetime  # Combined datetime import
 import io
 import locale
 import os
+import re
 import zipfile
 from typing import Tuple, Optional, Any
 
 import pandas as pd
 import streamlit as st
+from dateutil.relativedelta import relativedelta
 from jinja2 import Template
 
 # --- Constants ---
@@ -31,7 +33,7 @@ WATER_LITERS_MULTIPLIER = 12
 
 # --- Helper Functions ---
 
-def get_translated_month_year(month_year_format: str = '%B DE %Y') -> str:
+def get_translated_month_year(month_year_format: str = '%B DE %Y', delta_months: int = 0) -> str:
     """
     Gets the current month and year, translated to Portuguese (Brazil).
     """
@@ -39,8 +41,8 @@ def get_translated_month_year(month_year_format: str = '%B DE %Y') -> str:
         # Ensure locale is set, but be mindful if this runs in a shared environment
         # It's often better to handle localization at the presentation layer if possible
         locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
-        current_month_year = datetime.datetime.now().strftime(month_year_format)
-        return current_month_year.upper()
+        month_year = (datetime.datetime.now() - relativedelta(months=delta_months)).strftime(month_year_format)
+        return month_year.upper()
     except locale.Error:
         st.warning("Locale 'pt_BR.UTF-8' not available. Using default system locale for month name.")
         # Fallback to a non-localized or English format if pt_BR is not available
@@ -174,7 +176,8 @@ def create_report_html(template_path: str, customer_data: pd.Series) -> str:
         template_content = f.read()
         jinja_template = Template(template_content)
 
-    current_month_year_display = get_translated_month_year('%B DE %Y')
+    current_month_year = get_translated_month_year('%B DE %Y')
+    last_month_year = get_translated_month_year('%B DE %Y', delta_months=1)
     current_month_year_id = datetime.datetime.now().strftime('%Y-%m')  # For report ID consistency
 
     report_id = f"{customer_data['customer_id']}-{current_month_year_id}"
@@ -191,7 +194,8 @@ def create_report_html(template_path: str, customer_data: pd.Series) -> str:
     water_liters = customer_total_float * WATER_LITERS_FACTOR_BASE * WATER_LITERS_MULTIPLIER
 
     template_vars = {
-        'month_year': current_month_year_display,
+        'current_month_year': current_month_year,
+        'last_month_year': last_month_year,
         'report_id': report_id,
         'customer_name': customer_name,
         'customer_waste_kg': f"{customer_total_float:.2f}",
@@ -221,15 +225,25 @@ def generate_reports_zip(customers_df: pd.DataFrame) -> bytes:
     Generates all customer reports and packages them into a zip file.
     """
     buf = io.BytesIO()
-    current_month_year_filename = get_translated_month_year('%B-%Y')  # For filenames
+    current_month_year_filename = get_translated_month_year('%m%Y')  # For filenames
 
     with zipfile.ZipFile(buf, 'a', zipfile.ZIP_DEFLATED) as zf:
         for _, customer_row in customers_df.iterrows():
-            report_filename = f"{customer_row['customer_id']}-{current_month_year_filename}.svg"
+            customer_name_sanitized = sanitize_filename(customer_row['customer_name'])
+            report_filename = f"{customer_row['customer_id']}_{customer_name_sanitized}_{current_month_year_filename}.svg"
             report_html = create_report_html(TEMPLATE_FILE_SVG, customer_row)
             zf.writestr(report_filename, report_html)
             # st.toast(f"Report generated for {customer_row['customer_name']} at {report_filename}") # Optional: for progress
     return buf.getvalue()
+
+
+def sanitize_filename(text):
+    # Replace spaces with underscores
+    text = text.replace(" ", "_")
+    # Remove characters that are not alphanumeric
+    text = re.sub(r"[^a-zA-Z0-9]", "", text)
+    # Limit length if necessary
+    return text[:15]  # limit to 255 characters
 
 
 # --- Streamlit UI Components ---

@@ -22,13 +22,12 @@
     (67) 98443-4496
   </text>
   <text x="90" y="225" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-    info@yourcompany.com
   </text>
   <text x="780" y="180" text-anchor="end" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
     ID relatório: <tspan font-weight="bold" fill="#1e293b">{{report_id}}</tspan>
   </text>
   <text x="780" y="205" text-anchor="end" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-    Data de emissão: <tspan font-weight="bold" fill="#1e293b">{{month_year}}</tspan>
+    Data de emissão: <tspan font-weight="bold" fill="#1e293b">{{current_month_year}}</tspan>
   </text>
   <text x="90" y="270" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
     Cliente
@@ -38,7 +37,7 @@
     Nome: <tspan font-weight="bold">{{customer_name}}</tspan>
   </text>
   <text x="90" y="370" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
-    Este foi seu impacto positivo em {{month_year}}
+    Este foi seu impacto positivo em {{last_month_year}}
   </text>
   <rect x="90" y="385" width="722" height="180" rx="12" fill="#f9fafb" stroke="#e5e7eb" style=""/>
   <text x="110" y="415" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
