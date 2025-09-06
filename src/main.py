@@ -20,7 +20,7 @@ DEFAULT_XLS_COLUMNS = {
     "total": "TOTAL16"  # Example: Be specific if the column name is fixed
 }
 TEMPLATE_FILE_HTML = 'templates/service-report-preview-template.html'
-TEMPLATE_FILE_SVG = 'templates/service-report-template.svg'  # If you plan to use SVG again
+TEMPLATE_FILE_SVG = 'templates/service-report-template-v1.svg'  # If you plan to use SVG again
 
 # --- Report Calculation Constants ---
 FERTILIZER_FACTOR = 0.38
