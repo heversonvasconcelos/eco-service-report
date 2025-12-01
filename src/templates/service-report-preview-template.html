@@ -2,91 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Service Report</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <title>Eco Service Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #f4f6f8;
-            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .report-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 40px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            padding: 32px 40px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
-        .header {
-            color: #2e7d32;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            color: #555;
-            font-size: 1.1rem;
-            margin-bottom: 24px;
-        }
-        .metrics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .metric {
-            flex: 1 1 45%;
-            background: #e3f2fd;
-            border-radius: 8px;
-            padding: 16px;
+        .report-header {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: #ffffff;
+            padding: 40px;
             text-align: center;
+        }
+        .report-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .report-header p {
+            margin: 4px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .report-body {
+            padding: 40px;
+        }
+        .customer-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .customer-info h2 {
+            color: #343a40;
+            font-size: 1.8rem;
+            margin: 0 0 8px;
+        }
+        .customer-info p {
+            color: #6c757d;
+            font-size: 1rem;
+            margin: 0;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+        .metric-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            display: block;
+            fill: #4CAF50;
         }
         .metric-title {
-            color: #1976d2;
             font-size: 1rem;
-            margin-bottom: 4px;
+            color: #6c757d;
+            margin: 0 0 8px;
         }
         .metric-value {
-            color: #0d47a1;
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
+            color: #2E7D32;
         }
-        .footer {
-            color: #888;
-            font-size: 0.95rem;
+        .report-footer {
+            background-color: #f8f9fa;
+            color: #6c757d;
             text-align: center;
-            margin-top: 32px;
+            padding: 20px 40px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-<div class="report-container">
-    <div class="header">{{ customer_name }}</div>
-    <div class="subtitle">Report ID: {{ report_id }}</div>
-    <div class="subtitle">Date: {{ month_year }}</div>
-    <div class="metrics">
-        <div class="metric">
-            <div class="metric-title">Total Waste Diverted</div>
-            <div class="metric-value">{{ customer_waste_kg }} kg</div>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>Environmental Impact Report</h1>
+            <p>{{ current_month_year }}</p>
         </div>
-        <div class="metric">
-            <div class="metric-title">Organic Fertilizer Produced</div>
-            <div class="metric-value">{{ fertilizer_kg }} kg</div>
+        <div class="report-body">
+            <div class="customer-info">
+                <h2>{{ customer_name }}</h2>
+                <p>Report ID: {{ report_id }}</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 20l-7-7 7-7" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13h13c3.31 0 6-2.69 6-6V4" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h3 class="metric-title">Total Waste Diverted</h3>
+                    <p class="metric-value">{{ customer_waste_kg }} kg</p>
+                </div>
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#4CAF50"/><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#4CAF50"/><path d="M12 14c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#4CAF50"/></svg>
+                    <h3 class="metric-title">Organic Fertilizer Produced</h3>
+                    <p class="metric-value">{{ fertilizer_kg }} kg</p>
+                </div>
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="#4CAF50"/></svg>
+                    <h3 class="metric-title">CO₂ Emissions Avoided</h3>
+                    <p class="metric-value">{{ co2_avoided }} kg</p>
+                </div>
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h3 class="metric-title">Equivalent Driving Distance</h3>
+                    <p class="metric-value">{{ driving_distance }} km</p>
+                </div>
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#4CAF50"/></svg>
+                    <h3 class="metric-title">Equivalent Trees Planted</h3>
+                    <p class="metric-value">{{ trees_equivalent }}</p>
+                </div>
+                <div class="metric-card">
+                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zm0 17.96c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#4CAF50"/><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#4CAF50"/></svg>
+                    <h3 class="metric-title">Water Saved</h3>
+                    <p class="metric-value">{{ water_liters }} L</p>
+                </div>
+            </div>
         </div>
-        <div class="metric">
-            <div class="metric-title">CO₂ Emissions Avoided</div>
-            <div class="metric-value">{{ co2_avoided }} kg</div>
-        </div>
-        <div class="metric">
-            <div class="metric-title">Equivalent Trees</div>
-            <div class="metric-value">{{ trees_equivalent }}</div>
+        <div class="report-footer">
+            <p>Thank you for making a positive impact on the environment! | Generated on {{ last_month_year }}</p>
         </div>
     </div>
-    <div class="footer">
-        Thank you for making a positive impact on the environment!
-    </div>
-</div>
 </body>
 </html>
