@@ -1,68 +1,558 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg width="900" height="800" viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg">
-  <rect width="899.331" height="801.064" fill="#f3f4f6" style="" transform="matrix(1, 0.000233, 0, 1, 0, -1.168482)"/>
-  <rect x="50.094" y="43" width="799.812" height="755.939" fill="#fff" stroke="#e5e7eb" stroke-width="2" style=""/>
-  <defs>
-    <linearGradient id="headerGradient" x1="0" y1="0" x2="1080" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1e3a8a"/>
-      <stop offset="1" stop-color="#065f46"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="900"
+   height="860"
+   viewBox="0 0 900 860"
+   version="1.1"
+   id="svg31"
+   sodipodi:docname="service-report-template.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview31"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4749898"
+     inkscape:cx="442.71493"
+     inkscape:cy="548.13939"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg31" />
+  <defs
+     id="defs3">
+    <!-- Modern Gradient for Header -->
+    <linearGradient
+       id="headerGradient"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="1">
+      <stop
+         offset="0%"
+         stop-color="#065f46"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#1e3a8a"
+         id="stop2" />
     </linearGradient>
+    <!-- Drop Shadow for Cards -->
+    <filter
+       id="dropShadow"
+       x="-0.0058536585"
+       y="-0.0061538462"
+       width="1.0117073"
+       height="1.0148718">
+      <feGaussianBlur
+         in="SourceAlpha"
+         stdDeviation="2"
+         id="feGaussianBlur2" />
+      <feOffset
+         dx="0"
+         dy="2"
+         result="offsetblur"
+         id="feOffset2" />
+      <feComponentTransfer
+         id="feComponentTransfer2">
+        <feFuncA
+           type="linear"
+           slope="0.1"
+           id="feFuncA2" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge3">
+        <feMergeNode
+           id="feMergeNode2" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode3" />
+      </feMerge>
+    </filter>
   </defs>
-  <rect x="50" y="40" width="800" height="110" rx="3" fill="url(#headerGradient)"/>
-  <text x="450" y="95" text-anchor="middle" font-size="36" font-family="Inter, Arial, sans-serif" fill="#fff" font-weight="bold" style="white-space: pre; font-size: 36px;">
-    Relatório de Serviço
+  <!-- Background Page -->
+  <rect
+     width="900"
+     height="860"
+     fill="#f3f4f6"
+     id="rect3" />
+  <!-- Main Paper Container -->
+  <rect
+     x="40"
+     y="40"
+     width="820"
+     height="780"
+     rx="8"
+     fill="#ffffff"
+     filter="url(#dropShadow)"
+     id="rect4" />
+  <!-- Header Section -->
+  <path
+     d="M 40 48 Q 40 40 48 40 L 852 40 Q 860 40 860 48 L 860 130 L 40 130 Z"
+     fill="url(#headerGradient)"
+     id="path4" />
+  <text
+     x="450"
+     y="90"
+     text-anchor="middle"
+     font-size="32"
+     font-family="Inter, Arial, sans-serif"
+     fill="#ffffff"
+     font-weight="800"
+     letter-spacing="1"
+     id="text4">
+    RELATÓRIO DE SERVIÇO
   </text>
-  <text x="450" y="130" text-anchor="middle" font-size="20" font-family="Inter, Arial, sans-serif" fill="#e0e7ef" opacity="0.9" style="white-space: pre; font-size: 20px;">
+  <text
+     x="450"
+     y="115"
+     text-anchor="middle"
+     font-size="16"
+     font-family="Inter, Arial, sans-serif"
+     fill="#e0e7ef"
+     opacity="0.95"
+     id="text5">
     Resultados da coleta e compostagem de orgânicos
   </text>
-  <text x="90" y="180" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
-    COMPOSTA CG
+  <!-- Info Section (Company & Report Details) -->
+  <g
+     transform="translate(80, 170)"
+     id="g9">
+    <!-- Left: Company Info -->
+    <text
+       x="0"
+       y="0"
+       font-size="20"
+       font-family="Inter, Arial, sans-serif"
+       fill="#1e293b"
+       font-weight="bold"
+       id="text6">
+      COMPOSTA CG
+    </text>
+    <text
+       x="0"
+       y="25"
+       font-size="15"
+       font-family="Inter, Arial, sans-serif"
+       fill="#64748b"
+       id="text7">
+      (67) 98443-4496
+    </text>
+    <!-- Right: Report Meta -->
+    <text
+       x="740"
+       y="0"
+       text-anchor="end"
+       font-size="15"
+       font-family="Inter, Arial, sans-serif"
+       fill="#64748b"
+       id="text8">
+      ID relatório: <tspan
+   font-weight="bold"
+   fill="#1e293b"
+   id="tspan7">{{report_id}}</tspan></text>
+    <text
+       x="740"
+       y="25"
+       text-anchor="end"
+       font-size="15"
+       font-family="Inter, Arial, sans-serif"
+       fill="#64748b"
+       id="text9">
+      Data de emissão: <tspan
+   font-weight="bold"
+   fill="#1e293b"
+   id="tspan8">{{current_date}}</tspan></text>
+  </g>
+  <!-- Customer Section -->
+  <g
+     transform="translate(80, 240)"
+     id="g10">
+    <rect
+       x="0"
+       y="0"
+       width="740"
+       height="50"
+       rx="6"
+       fill="#f0fdf4"
+       stroke="#dcfce7"
+       stroke-width="1"
+       id="rect9" />
+    <text
+       x="20"
+       y="32"
+       font-size="18"
+       font-family="Inter, Arial, sans-serif"
+       fill="#166534"
+       id="text10">
+      Cliente: <tspan
+   font-weight="bold"
+   fill="#14532d"
+   id="tspan9">{{customer_name}}</tspan></text>
+  </g>
+  <!-- Impact Section Title -->
+  <text
+     x="450"
+     y="340"
+     text-anchor="middle"
+     font-size="20"
+     font-family="Inter, Arial, sans-serif"
+     fill="#1e293b"
+     font-weight="bold"
+     id="text11">
+    Seu impacto positivo em {{report_date}}
   </text>
-  <text x="90" y="205" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-    (67) 98443-4496
-  </text>
-  <text x="90" y="225" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-  </text>
-  <text x="780" y="180" text-anchor="end" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-    ID relatório: <tspan font-weight="bold" fill="#1e293b">{{report_id}}</tspan>
-  </text>
-  <text x="780" y="205" text-anchor="end" font-size="16" font-family="Inter, Arial, sans-serif" fill="#64748b" style="white-space: pre;">
-    Data de emissão: <tspan font-weight="bold" fill="#1e293b">{{current_month_year}}</tspan>
-  </text>
-  <text x="90" y="270" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
-    Cliente
-  </text>
-  <rect x="90" y="285" width="722" height="40" rx="8" fill="#f9fafb" style="" stroke="#e5e7eb"/>
-  <text x="110" y="312" font-size="18" font-family="Inter, Arial, sans-serif" fill="#1e293b" style="white-space: pre;">
-    Nome: <tspan font-weight="bold">{{customer_name}}</tspan>
-  </text>
-  <text x="90" y="370" font-size="22" font-family="Inter, Arial, sans-serif" fill="#1e293b" font-weight="bold" style="white-space: pre;">
-    Este foi seu impacto positivo em {{last_month_year}}
-  </text>
-  <rect x="90" y="385" width="722" height="180" rx="12" fill="#f9fafb" stroke="#e5e7eb" style=""/>
-  <text x="110" y="415" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Deixou de enviar para o aterro sanitário: {{customer_waste_kg}} kg 👏
-  </text>
-  <text x="110" y="440" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Que se transformou em {{fertilizer_kg}} kg de adubo orgânico ♻️
-  </text>
-  <text x="110" y="465" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Também foi evitado o lançamento de {{co2_avoided}} kg de CO² na atmosfera ⛅
-  </text>
-  <text x="110" y="490" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Equivale à {{driving_distante}} km rodados de carro 🚗
-  </text>
-  <text x="110" y="515" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Também equivale ao sequestro de CO² de {{trees_equivalent}} árvores 🌳
-  </text>
-  <text x="110" y="540" font-size="17" font-family="Inter, Arial, sans-serif" fill="#334155" style="white-space: pre;">
-    • Com a sua iniciativa evitamos a contaminação de {{water_liters}} litros de água 💧 🏞️
-  </text>
-  <rect x="50" y="680" width="800" height="120" rx="3" fill="#1e293b"/>
-  <text x="450" y="735" text-anchor="middle" font-size="16" font-family="Inter, Arial, sans-serif" fill="#fff" style="white-space: pre; font-size: 16px;">
-    Composta Campo Grande.
-  </text>
-  <text x="450" y="755" text-anchor="middle" font-size="16" font-family="Inter, Arial, sans-serif" fill="#fff" style="white-space: pre; font-size: 16px;">
-    Obrigado por nos ajudar a transformar o mundo mais sustentável!
-  </text>
+  <!-- Impact Metrics Grid -->
+  <g
+     transform="translate(80, 370)"
+     id="g24">
+    <!-- Item 1: Waste -->
+    <g
+       transform="translate(0, 0)"
+       id="g13">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect11" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect12" />
+      <!-- Icon bg -->
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text12">👏</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text13">
+        Deixou de enviar para o aterro sanitário: <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan12">{{customer_waste_kg}} kg</tspan></text>
+    </g>
+    <!-- Item 2: Fertilizer -->
+    <g
+       transform="translate(0, 55)"
+       id="g15">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect13" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect14" />
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text14">♻️</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text15">
+        Que se transformou em <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan14">{{fertilizer_kg}} kg</tspan> de adubo orgânico
+      </text>
+    </g>
+    <!-- Item 3: CO2 -->
+    <g
+       transform="translate(0, 110)"
+       id="g17">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect15" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect16" />
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text16">⛅</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text17">
+        Evitou o lançamento de <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan16">{{co2_avoided}} kg</tspan> de CO² na atmosfera
+      </text>
+    </g>
+    <!-- Item 4: Car Distance -->
+    <g
+       transform="translate(0, 165)"
+       id="g19">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect17" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect18" />
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text18">🚗</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text19">
+        Equivale à <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan18">{{driving_distante}} km</tspan> rodados de carro
+      </text>
+    </g>
+    <!-- Item 5: Trees -->
+    <g
+       transform="translate(0, 220)"
+       id="g21">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect19" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect20" />
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text20">🌳</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text21">
+        Equivale ao sequestro de CO² de <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan20">{{trees_equivalent}} árvores</tspan></text>
+    </g>
+    <!-- Item 6: Water -->
+    <g
+       transform="translate(0, 275)"
+       id="g23">
+      <rect
+         x="0"
+         y="0"
+         width="740"
+         height="45"
+         rx="8"
+         fill="#fff"
+         stroke="#e2e8f0"
+         stroke-width="1"
+         id="rect21" />
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="45"
+         rx="8"
+         fill="#ecfdf5"
+         id="rect22" />
+      <text
+         x="25"
+         y="30"
+         text-anchor="middle"
+         font-size="22"
+         id="text22">💧</text>
+      <text
+         x="70"
+         y="28"
+         font-size="16"
+         font-family="Inter, Arial, sans-serif"
+         fill="#334155"
+         id="text23">
+        Evitamos a contaminação de <tspan
+   font-weight="bold"
+   fill="#059669"
+   font-size="18"
+   id="tspan22">{{water_liters}} litros</tspan> de água
+      </text>
+    </g>
+  </g>
+  <!-- ODS Section -->
+  <g
+     transform="translate(40, 690)"
+     id="g31">
+    <g
+       transform="translate(195, 15)"
+       id="g30">
+      <!-- ODS 2: Fome Zero -->
+      <image
+         x="0"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_2}}"
+         id="image24" />
+      <!-- ODS 3: Saúde e Bem-estar -->
+      <image
+         x="60"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_3}}"
+         id="image25" />
+      <!-- ODS 6: Água Potável -->
+      <image
+         x="120"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_6}}"
+         id="image26" />
+      <!-- ODS 11: Cidades Sustentáveis -->
+      <image
+         x="180"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_11}}"
+         id="image27" />
+      <!-- ODS 12: Consumo Responsável -->
+      <image
+         x="240"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_12}}"
+         id="image28" />
+      <!-- ODS 13: Ação Climática -->
+      <image
+         x="300"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_13}}"
+         id="image29" />
+      <!-- ODS 15: Vida Terrestre -->
+      <image
+         x="360"
+         y="0"
+         width="50"
+         height="50"
+         href="{{ods_15}}"
+         id="image30" />
+    </g>
+  </g>
+  <!-- Footer -->
+  <path
+     d="M 40 780 L 860 780 L 860 812 Q 860 820 852 820 L 48 820 Q 40 820 40 812 Z"
+     fill="#1e293b"
+     id="path31" />
+  <text
+     x="450"
+     y="798"
+     text-anchor="middle"
+     font-size="14px"
+     font-family="Inter, Arial, sans-serif"
+     fill="#ffffff"
+     id="text31"
+     style="white-space:pre;inline-size:577.216"
+     xml:space="preserve"><tspan
+       x="450"
+       y="798"
+       id="tspan1">Composta Campo Grande
+</tspan><tspan
+       x="450"
+       y="815.50003"
+       id="tspan2">Obrigado por nos ajudar a transformar o mundo em um lugar mais sustentável</tspan></text>
 </svg>
