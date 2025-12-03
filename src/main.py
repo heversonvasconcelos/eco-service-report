@@ -48,6 +48,12 @@ TRANSLATIONS = {
                    "November", "December"],
         "month_of_year_format": "{month_name} {year}", "month_year_format": "%B-%Y", "last_month_na": "N/A",
         "report_id_na": "N/A",
+        # Report Template Translations
+        "report_title": "Environmental Impact Report", "report_id_label": "Report ID:",
+        "metric_waste": "Total Waste Diverted", "metric_fertilizer": "Organic Fertilizer",
+        "metric_co2": "CO₂ Avoided", "metric_driving": "Driving Distance",
+        "metric_trees": "Trees Equivalent", "metric_water": "Water Saved",
+        "report_footer": "Thank you for making a positive impact on the environment! | Generated on {date}"
     },
     "pt": {
         "page_title": "Relatórios Eco Service", "main_title": "♻️ Gerador de Relatórios Eco Service",
@@ -83,6 +89,12 @@ TRANSLATIONS = {
                    "Novembro", "Dezembro"],
         "month_of_year_format": "{month_name} {year}", "month_year_format": "%B-%Y", "last_month_na": "N/D",
         "report_id_na": "N/D",
+        # Report Template Translations
+        "report_title": "Relatório de Impacto Ambiental", "report_id_label": "ID do Relatório:",
+        "metric_waste": "Total de Resíduos Desviados", "metric_fertilizer": "Fertilizante Orgânico",
+        "metric_co2": "CO₂ Evitado", "metric_driving": "Distância de Carro",
+        "metric_trees": "Árvores Equivalentes", "metric_water": "Água Economizada",
+        "report_footer": "Obrigado por causar um impacto positivo no meio ambiente! | Gerado em {date}"
     }
 }
 
@@ -215,12 +227,25 @@ def create_report_html(template_path: str, customer_data: pd.Series, report_mont
     driving_distance, trees_equivalent, water_liters = co2_avoided / DRIVING_DISTANCE_CO2_CONVERSION_FACTOR, co2_avoided / TREES_EQUIVALENT_CO2_ABSORPTION_FACTOR, customer_total_float * WATER_LITERS_FACTOR_BASE * WATER_LITERS_MULTIPLIER
 
     template_vars = {
-        'report_date': report_month_str, 'report_id': report_id,
+        'report_title': t('report_title'),
+        'report_date': report_month_str,
+        'report_id_label': t('report_id_label'),
+        'report_id': report_id,
         'current_date': current_date,
-        'customer_name': customer_data['customer_name'], 'customer_waste_kg': f"{customer_total_float:.2f}",
-        'fertilizer_kg': f"{fertilizer_kg:.2f}", 'co2_avoided': f"{co2_avoided:.2f}",
-        'driving_distance': f"{driving_distance:.2f}", 'trees_equivalent': f"{trees_equivalent:.0f}",
-        'water_liters': f"{water_liters:.2f}"
+        'customer_name': customer_data['customer_name'],
+        'metric_waste': t('metric_waste'),
+        'customer_waste_kg': f"{customer_total_float:.2f}",
+        'metric_fertilizer': t('metric_fertilizer'),
+        'fertilizer_kg': f"{fertilizer_kg:.2f}",
+        'metric_co2': t('metric_co2'),
+        'co2_avoided': f"{co2_avoided:.2f}",
+        'metric_driving': t('metric_driving'),
+        'driving_distance': f"{driving_distance:.2f}",
+        'metric_trees': t('metric_trees'),
+        'trees_equivalent': f"{trees_equivalent:.0f}",
+        'metric_water': t('metric_water'),
+        'water_liters': f"{water_liters:.2f}",
+        'report_footer': t('report_footer').format(date=current_date)
     }
     template_vars.update(get_ods_images())
     return jinja_template.render(template_vars)
@@ -349,6 +374,10 @@ def process_spreadsheet(xls_file: st.runtime.uploaded_file_manager.UploadedFile,
         customers_df['customer_id'] = pd.to_numeric(customers_df['customer_id'], errors='coerce')
         customers_df['customer_total'] = pd.to_numeric(customers_df['customer_total'], errors='coerce')
         customers_df = customers_df.dropna(subset=['customer_id', 'customer_total'])
+
+        # Remove rows where customer_name is NaN, 'nan', 'None', or empty
+        customers_df = customers_df[~customers_df['customer_name'].astype(str).str.strip().str.lower().isin(['nan', 'none', ''])]
+        
         customers_df['customer_id'] = customers_df['customer_id'].astype(int)
         
         st.divider()

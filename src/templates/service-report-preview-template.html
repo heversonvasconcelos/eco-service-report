@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eco Service Report</title>
+    <title>{{ report_title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -100,49 +100,49 @@
 <body>
     <div class="report-container">
         <div class="report-header">
-            <h1>Environmental Impact Report</h1>
-            <p>{{ current_month_year }}</p>
+            <h1>{{ report_title }}</h1>
+            <p>{{ report_date }}</p>
         </div>
         <div class="report-body">
             <div class="customer-info">
                 <h2>{{ customer_name }}</h2>
-                <p>Report ID: {{ report_id }}</p>
+                <p>{{ report_id_label }} {{ report_id }}</p>
             </div>
             <div class="metrics-grid">
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 20l-7-7 7-7" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13h13c3.31 0 6-2.69 6-6V4" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <h3 class="metric-title">Total Waste Diverted</h3>
+                    <h3 class="metric-title">{{ metric_waste }}</h3>
                     <p class="metric-value">{{ customer_waste_kg }} kg</p>
                 </div>
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#4CAF50"/><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#4CAF50"/><path d="M12 14c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#4CAF50"/></svg>
-                    <h3 class="metric-title">Organic Fertilizer Produced</h3>
+                    <h3 class="metric-title">{{ metric_fertilizer }}</h3>
                     <p class="metric-value">{{ fertilizer_kg }} kg</p>
                 </div>
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="#4CAF50"/></svg>
-                    <h3 class="metric-title">CO₂ Emissions Avoided</h3>
+                    <h3 class="metric-title">{{ metric_co2 }}</h3>
                     <p class="metric-value">{{ co2_avoided }} kg</p>
                 </div>
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <h3 class="metric-title">Equivalent Driving Distance</h3>
+                    <h3 class="metric-title">{{ metric_driving }}</h3>
                     <p class="metric-value">{{ driving_distance }} km</p>
                 </div>
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#4CAF50"/></svg>
-                    <h3 class="metric-title">Equivalent Trees Planted</h3>
+                    <h3 class="metric-title">{{ metric_trees }}</h3>
                     <p class="metric-value">{{ trees_equivalent }}</p>
                 </div>
                 <div class="metric-card">
                     <svg class="metric-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zm0 17.96c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#4CAF50"/><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#4CAF50"/></svg>
-                    <h3 class="metric-title">Water Saved</h3>
+                    <h3 class="metric-title">{{ metric_water }}</h3>
                     <p class="metric-value">{{ water_liters }} L</p>
                 </div>
             </div>
         </div>
         <div class="report-footer">
-            <p>Thank you for making a positive impact on the environment! | Generated on {{ last_month_year }}</p>
+            <p>{{ report_footer }}</p>
         </div>
     </div>
 </body>
